@@ -1,0 +1,18 @@
+{
+  "name": "mineflayer-login-move-bot",
+  "version": "1.0.0",
+  "description": "Mineflayer bot: auto /login, log chat, and pipe console to chat (with auto-reconnect).",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+    ,
+    "gui": "node manager.js"
+  },
+  "dependencies": {
+    "mineflayer": "^4.26.0",
+    "prismarine-viewer": "^1.33.0"
+  },
+  "optionalDependencies": {
+    "canvas": "^3.1.0"
+  }
+}
