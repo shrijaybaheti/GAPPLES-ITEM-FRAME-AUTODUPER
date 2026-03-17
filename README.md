@@ -78,33 +78,6 @@ Type `quit` (or `exit`) in the terminal to stop the bot.
 - `.help` shows local commands (not sent to Minecraft chat)
 - `.placeframe` equips an item frame from inventory and places it on top of the block the bot is standing on
 
-## Publish safely (don’t leak personal info)
-
-Do not publish any real server password, usernames, or personal tokens.
-
-Suggested “safe to commit” set (typical):
-- `gui/`
-- `manager.js`
-- `package.json`
-- `package-lock.json`
-- `.gitignore`
-- `.env.example`
-- `accounts.example.json`
-- `README.md`
-
-Never commit:
-- `.env`
-- `accounts.json`
-- `node_modules/`
-- `bkup/`
-
-Before making this repo public, **open `bot.js` and remove any hardcoded host/username/password** (use env vars or an untracked local config instead).
-
-Quick scan before publishing:
-```bash
-rg -n "password|username|token|secret|api[_-]?key" -S .
-```
-
 ## Troubleshooting
 
 - GUI port busy: the manager will auto-try the next ports after `3333`.
