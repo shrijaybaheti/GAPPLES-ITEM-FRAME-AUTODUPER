@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bot Manager</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand">
+          <h1>Bot Manager</h1>
+          <div class="sub">Accounts · launch/stop · live logs</div>
+        </div>
+        <div class="topbarRight">
+          <div class="statusChip" id="status">Loading…</div>
+        </div>
+      </header>
+
+      <section class="layout">
+        <aside class="controls" aria-label="Accounts controls">
+          <div class="panelHeader">
+            <h2>Accounts</h2>
+          </div>
+
+          <div class="field">
+            <div class="label">Password (same for all)</div>
+            <input id="password" type="password" placeholder="Password" autocomplete="current-password" />
+          </div>
+
+          <div class="field">
+            <div class="label">Add username</div>
+            <div class="rowInline">
+              <input id="newUser" type="text" placeholder="Username" autocomplete="off" />
+              <button id="addBtn" class="btn">Add</button>
+            </div>
+          </div>
+
+          <div class="actions">
+            <button id="saveBtn" class="btn">Save</button>
+            <button id="startBtn" class="btn primary">Run all</button>
+            <button id="stopBtn" class="btn danger">Stop all</button>
+          </div>
+
+          <div class="hint">
+            Each username runs in parallel. Viewer webserver is disabled for spawned bots to avoid port conflicts.
+          </div>
+        </aside>
+
+        <section class="usersPanel" aria-label="Users">
+          <div class="panelHeader">
+            <h2>Users</h2>
+            <div class="panelMeta" id="usersMeta">—</div>
+          </div>
+          <div class="usersList" id="users" role="list"></div>
+        </section>
+
+        <section class="logPanel" aria-label="Logs">
+          <div class="panelHeader">
+            <h2>Log</h2>
+            <div class="logUser" id="logUser">Select a user</div>
+          </div>
+          <pre class="logBox" id="logBox">No user selected.</pre>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

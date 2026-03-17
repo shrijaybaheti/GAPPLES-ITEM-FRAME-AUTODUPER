@@ -1,0 +1,432 @@
+:root {
+  color-scheme: dark;
+  --ink: #f2f2f2;
+  --muted: rgba(255, 255, 255, 0.72);
+  --shadow: rgba(0, 0, 0, 0.35);
+
+  /* Minecraft-ish palette */
+  --grass: #4aa52d;
+  --grass2: #3e8f27;
+  --dirt: #8a5a3a;
+  --dirt2: #6e472f;
+  --stone: #7f7f7f;
+  --stone2: #6b6b6b;
+  --wood: #a06a3b;
+  --wood2: #7f532f;
+  --borderDark: rgba(0, 0, 0, 0.75);
+  --borderLight: rgba(255, 255, 255, 0.16);
+  --accent: #7bdc4b;
+  --danger: #ff5a5a;
+  --warn: #ffd25a;
+
+  --log: #0a0f12; /* obsidian-ish */
+  --logText: #e7f0ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  letter-spacing: 0.2px;
+  color: var(--ink);
+  background:
+    radial-gradient(900px 540px at 25% 8%, rgba(123, 220, 75, 0.18), transparent 62%),
+    radial-gradient(820px 540px at 78% 18%, rgba(255, 210, 90, 0.14), transparent 62%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.18),
+      rgba(0, 0, 0, 0.18) 1px,
+      transparent 1px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.12),
+      rgba(0, 0, 0, 0.12) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    linear-gradient(180deg, #1c2b1a 0%, #101517 38%, #0b0f10 100%);
+}
+
+.app {
+  max-width: 1220px;
+  margin: 18px auto;
+  padding: 0 18px 22px;
+}
+
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 2px solid var(--borderDark);
+  box-shadow: 0 16px 40px var(--shadow);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.12)),
+    linear-gradient(180deg, var(--grass) 0%, var(--grass2) 55%, var(--dirt) 56%, var(--dirt2) 100%);
+  image-rendering: pixelated;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 26px;
+  letter-spacing: 0.2px;
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+.brand .sub {
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.statusChip {
+  font-size: 13px;
+  padding: 6px 10px;
+  border: 2px solid var(--borderDark);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(0, 0, 0, 0.22)),
+    linear-gradient(180deg, var(--stone) 0%, var(--stone2) 100%);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 0 var(--borderLight), 0 10px 22px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+}
+
+.layout {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: 320px 1fr 1.2fr;
+  grid-template-areas: "controls users logs";
+  gap: 14px;
+  align-items: start;
+}
+
+.controls,
+.usersPanel,
+.logPanel {
+  border-radius: 8px;
+  border: 2px solid var(--borderDark);
+  box-shadow: 0 18px 46px var(--shadow);
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.22)),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06) 2px, transparent 2px, transparent 14px),
+    linear-gradient(180deg, var(--stone) 0%, var(--stone2) 100%);
+}
+
+.controls {
+  grid-area: controls;
+  padding: 14px;
+  position: sticky;
+  top: 14px;
+}
+
+.usersPanel {
+  grid-area: users;
+}
+
+.logPanel {
+  grid-area: logs;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 2px solid var(--borderDark);
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.10)),
+    linear-gradient(180deg, #3c3c3c 0%, #2a2a2a 100%);
+}
+
+h2 {
+  margin: 0;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 0 rgba(0, 0, 0, 0.55);
+}
+
+.panelMeta,
+.logUser {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.field {
+  margin-top: 12px;
+}
+
+.label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.78);
+  margin-bottom: 6px;
+}
+
+.rowInline {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  align-items: center;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 6px;
+  border: 2px solid rgba(0, 0, 0, 0.75);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.26)),
+    linear-gradient(180deg, #2f2f2f 0%, #1e1e1e 100%);
+  color: rgba(255, 255, 255, 0.92);
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10), 0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+input:focus,
+select:focus {
+  border-color: rgba(123, 220, 75, 0.8);
+  box-shadow: 0 0 0 4px rgba(123, 220, 75, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.10),
+    0 10px 22px rgba(0, 0, 0, 0.25);
+}
+
+.actions {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.btn {
+  padding: 11px 12px;
+  border-radius: 6px;
+  border: 2px solid var(--borderDark);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(0, 0, 0, 0.22)),
+    linear-gradient(180deg, var(--wood) 0%, var(--wood2) 100%);
+  color: rgba(255, 255, 255, 0.92);
+  cursor: pointer;
+  font-weight: 650;
+  letter-spacing: 0.2px;
+  box-shadow: inset 0 1px 0 var(--borderLight), 0 12px 22px rgba(0, 0, 0, 0.26);
+}
+
+.btn:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.primary {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.24)),
+    linear-gradient(180deg, #3fbf3f 0%, #2f8d2f 100%);
+}
+
+.btn.danger {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.24)),
+    linear-gradient(180deg, #d64b4b 0%, #a93c3c 100%);
+}
+
+.hint {
+  margin-top: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.45;
+}
+
+.usersList {
+  padding: 10px 10px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.userRow {
+  display: grid;
+  grid-template-columns: 18px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 10px;
+  border: 2px solid rgba(0, 0, 0, 0.65);
+  border-radius: 6px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.24)),
+    linear-gradient(180deg, #4c4c4c 0%, #3a3a3a 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 12px 18px rgba(0, 0, 0, 0.18);
+  cursor: pointer;
+}
+
+.userRow:hover {
+  filter: brightness(1.05);
+}
+
+.userRow.selected {
+  border-color: rgba(255, 210, 90, 0.9);
+  box-shadow: 0 0 0 4px rgba(255, 210, 90, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 12px 18px rgba(0, 0, 0, 0.18);
+}
+
+.userName {
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userMeta {
+  margin-top: 2px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.72);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userText {
+  min-width: 0;
+}
+
+.userButtons {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.iconBtn {
+  border: 2px solid rgba(0, 0, 0, 0.75);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.26)),
+    linear-gradient(180deg, #6b6b6b 0%, #585858 100%);
+  color: rgba(255, 255, 255, 0.92);
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.iconBtn:hover {
+  filter: brightness(1.06);
+}
+
+.iconBtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.iconBtn.run {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.26)),
+    linear-gradient(180deg, #3fbf3f 0%, #2f8d2f 100%);
+}
+
+.iconBtn.stop {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.26)),
+    linear-gradient(180deg, #d64b4b 0%, #a93c3c 100%);
+}
+
+.iconBtn.remove {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(0, 0, 0, 0.26)),
+    linear-gradient(180deg, #b58b35 0%, #8f6b24 100%);
+}
+
+.logBox {
+  margin: 0;
+  padding: 12px 14px 14px;
+  min-height: 520px;
+  max-height: 72vh;
+  overflow: auto;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 12px;
+  line-height: 1.45;
+  background:
+    radial-gradient(900px 380px at 10% 0%, rgba(123, 220, 75, 0.16), transparent 58%),
+    radial-gradient(700px 280px at 90% 0%, rgba(255, 210, 90, 0.14), transparent 55%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06) 1px, transparent 1px, transparent 10px),
+    var(--log);
+  color: var(--logText);
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 2px solid rgba(0, 0, 0, 0.75);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.dot.green {
+  background: rgba(26, 143, 85, 0.85);
+  box-shadow: 0 0 0 4px rgba(26, 143, 85, 0.14);
+}
+
+.dot.red {
+  background: rgba(255, 61, 106, 0.82);
+  box-shadow: 0 0 0 4px rgba(255, 61, 106, 0.14);
+}
+
+.dot.yellow {
+  background: rgba(193, 121, 0, 0.92);
+  box-shadow: 0 0 0 4px rgba(193, 121, 0, 0.16);
+}
+
+@media (max-width: 1050px) {
+  .layout {
+    grid-template-columns: 320px 1fr;
+    grid-template-areas:
+      "controls users"
+      "logs logs";
+  }
+  .controls {
+    position: static;
+  }
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "controls"
+      "users"
+      "logs";
+  }
+  .app {
+    padding: 0 12px 18px;
+  }
+  .topbar {
+    padding: 12px 12px;
+  }
+  .brand h1 {
+    font-size: 22px;
+  }
+  .logBox {
+    min-height: 420px;
+  }
+}
